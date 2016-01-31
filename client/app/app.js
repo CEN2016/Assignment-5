@@ -20,4 +20,4 @@ app.run(['$state',
   function($state) {
     $state.go('listings.list');
   }
-]);
+]); 
