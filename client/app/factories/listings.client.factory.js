@@ -6,14 +6,6 @@ angular.module('listings').factory('Listings', ['$http',
       },
 
       create: function(listing) {
-
-        if(data.results[0].geometry.location === 'undefined') {
-          alert('Data results undefined');
-
-          data.results[0].geometry.location = {};
-        }
-
-        alert('Create' + angular.toJson(listing));
         return $http.post('http://localhost:8080/api/listings', listing);
       },
 
@@ -22,7 +14,6 @@ angular.module('listings').factory('Listings', ['$http',
       },
 
       update: function(id, listing) {
-        alert('Update' + angular.toJson(listing));
         return $http.put('http://localhost:8080/api/listings/' + id, listing);
       },
 
