@@ -97,15 +97,10 @@ angular.module('listings').controller('ListingsController', ['$scope', '$locatio
               });
     };
 
-    $scope.remove = function(isValid) {
-      if (!isValid) {
-        $scope.$broadcast('show-errors-check-validity', 'articleForm');
-        return false;
-      }
-
+    $scope.remove = function() {
       var id = $stateParams.listingId;
 
-  	  Listings.remove(id)
+  	  Listings.delete(id)
   			  .then(function(response) {
   				  $state.go('listings.list', { successMessage: 'Listing deleted.' });
   			  }, function(error) {

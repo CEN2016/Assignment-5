@@ -1,38 +1,39 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body ng-app="directoryApp">
-    <div class="container">
-      <div class="row">
-        <h1>Edit Listing</h1>
-      </div>
-      <div class="row" ng-controller="ListingsController">
-        <div class="col-md-6">
-	  <p> Code: </p>
-	  <input type = "text" ng-model = "newCode">
-	  <p> Name: </p>
-	  <input type = "text" ng-model = "newName">
-	  <p> Address: </p>
-	  <input type = "text" ng-model = "newAddress">
-	  <p> Longitude: </p>
-	  <input type = "text" ng-model = "newLongitude">
-	  <p> Latitude: </p>
-	  <input type = "text" ng-model = "newLatitude">
-	  <button ng-click = addListing()> 
-	    Edit Listing
-	  </button>
-        </div>
-      </div>
+<div class="row" ng-controller="ListingsController" ng-init="findOne()">
+  <div class="col-md-offset-1 col-md-10 formWrapper">
+    <div class="page-header">
+      <h3>Edit Listing</h3>
+
+      <form name="listingForm" class="form-horizontal" ng-submit="update(listingForm.$valid)">
+        <fieldset>
+          <div class="form-group" show-errors>
+            <label for="name">Name</label>
+            <input name="name" type="text" ng-model="listing.name" id="name" class="form-control" required>
+            <div ng-messages="listingFrom.name.$error" role="alert">
+              <p class="help-block error-text" ng-message="required">Listing name is required</p>
+            </div>
+          </div>
+          <div class="form-group" show-errors>
+            <label for="code">Code</label>
+            <input name="code" type="text" ng-model="listing.code" id="code" class="form-control" required>
+            <div ng-messages="listingFrom.code.$error" role="alert">
+              <p class="help-block error-text" ng-message="required">Listing code is required</p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="address">Address</label>
+            <input name="address" type="text" ng-model="listing.address" id="address" class="form-control">
+          </div>
+          <div class="form-group">
+            <input type="submit" class="btn btn-default">
+          </div>
+          <div ng-show="error" class="text-danger">
+            <strong ng-bind="error"></strong>
+          </div>
+        </fieldset>
+        <tt>Name: {{listing.name}}</tt><br>
+        <tt>Building Code: {{listing.code}}</tt><br>
+        <tt>Address: {{listing.address}}</tt><br>
+      </form>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
-    <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
-    <script src="app.js"></script>
-    <script src="listingController.js"></script>
-    <script src="listingFactory.js"></script>
-  </font>
-  </body>
-</html>
+  </div>
+</div>
