@@ -12,7 +12,9 @@
           <h1>UF Directory App</h1>
         </div>
         <div class="col-md-6">
-          <!-- Add a ui-sref property to the anchor tags to allow navigation between different states -->
+        <div ng-show = $scope.loading >
+          <img src = /client/img/484.gif> 
+        </div> 
           <nav>
             <ul class="nav nav-pills">
               <li><a ui-sref = 'listings.list'> List View</a></li>
