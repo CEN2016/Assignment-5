@@ -55,6 +55,7 @@ angular.module('listings').controller('ListingsController', ['$scope', '$locatio
         return false;
       }
 
+
       /* Create the listing object */
       var listing = {
         name: $scope.name,
@@ -62,8 +63,10 @@ angular.module('listings').controller('ListingsController', ['$scope', '$locatio
         address: $scope.address
       };
 
+
       /* Save the article using the Listings factory */
       Listings.create(listing)
+
               .then(function(response) {
                 //if the object is successfully saved redirect back to the list page
                 $state.go('listings.list', { successMessage: 'Listing succesfully created!' });
