@@ -96,8 +96,10 @@ angular.module('listings').controller('ListingsController', ['$scope', '$locatio
 
       Listings.update(id, listing)
               .then(function(response) {
+                alert('success');
                 $state.go('listings.list', { successMessage: 'Listing succesfully updated!' });
               }, function(error) {
+                alert('error');
                 $scope.error = 'Unable to update listing!\n' + error;
               });
     };
