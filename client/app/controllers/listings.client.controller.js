@@ -81,13 +81,15 @@ angular.module('listings').controller('ListingsController', ['$scope', '$locatio
         return false;
       }
 
+      var id = $stateParams.listingId;
+
       var listing = {
         name: $scope.newName,
         code: $scope.newCode,
         address: $scope.newAddress
       };
 
-      Listings.update(listing)
+      Listings.update(id, listing)
               .then(function(response) {
                 $state.go('listings.list', { successMessage: 'Listing succesfully updated!' });
               }, function(error) {
@@ -95,13 +97,15 @@ angular.module('listings').controller('ListingsController', ['$scope', '$locatio
               });
     };
 
-    $scope.remove = function() {
+    $scope.remove = function(isValid) {
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'articleForm');
         return false;
       }
-      
-  	  Listings.remove(this)
+
+      var id = $stateParams.listingId;
+
+  	  Listings.remove(id)
   			  .then(function(response) {
   				  $state.go('listings.list', { successMessage: 'Listing deleted.' });
   			  }, function(error) {
