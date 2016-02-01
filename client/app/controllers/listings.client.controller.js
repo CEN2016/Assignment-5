@@ -83,11 +83,16 @@ angular.module('listings').controller('ListingsController', ['$scope', '$locatio
 
       var id = $stateParams.listingId;
 
+      alert('id ' + id);
+
       var listing = {
-        name: $scope.newName,
-        code: $scope.newCode,
-        address: $scope.newAddress
+        name: $scope.listing.name,
+        code: $scope.listing.code,
+        address: $scope.listing.address
       };
+
+      alert('listing ' + listing.name + ':' + listing.code + ':' + listing.address);
+
 
       Listings.update(id, listing)
               .then(function(response) {
