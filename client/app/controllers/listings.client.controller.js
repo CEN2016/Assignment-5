@@ -116,13 +116,50 @@ angular.module('listings').controller('ListingsController', ['$scope', '$locatio
       $scope.success = $stateParams.successMessage;
     }
 
+$scope.onClick = function(marker, eventName, model) {
+            console.log("Clicked!");
+            model.show = !model.show;
+        };
+
+
+$scope.mapMarkers = [];
+$scope.$watch(function() {
+        return $scope.map.bounds;
+    }, function(nv, ov) {
+  // Only need to regenerate once
+  $scope.loading = true;
+
+  /* Get all the listings, then bind it to the scope */
+  Listings.getAll().then(function(response) {
+    $scope.loading = false; //remove loader
+    $scope.listings = response.data;
+    var markers = [];
+    for (var i = 0; i < $scope.listings.length; i++) {
+      if($scope.listings[i].coordinates) {
+        var marker = $scope.listings[i].coordinates;
+        marker['id'] = i;
+        //marker['show'] = false;
+        marker['title'] = $scope.listings[i].name;
+        markers.push(marker);
+      }
+    }
+    $scope.mapMarkers = markers;
+
+  }, function(error) {
+    $scope.loading = false;
+    $scope.error = 'Unable to retrieve listings!\n' + error;
+  });
+
+}, true);
+
     /* Map properties */
     $scope.map = {
       center: {
         latitude: 29.65163059999999,
         longitude: -82.3410518
       },
-      zoom: 14
-    }
+      zoom: 14,
+      bounds: {},
+    };
   }
 ]);
