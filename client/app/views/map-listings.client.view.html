@@ -1,3 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script
+src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBAq4sL-N_5-CUEh_Co2yvYHBkUmgZNfyU">
+</script>
+
+<h3>Map View</h3>
+
+<script>
+function initialize() {
+  var mapProp = {
+    center:new google.maps.LatLng(29.6483,-82.3494),
+    zoom:15,
+    mapTypeId:google.maps.MapTypeId.ROADMAP
+  };
+  var map=new google.maps.Map(document.getElementById("googleMap"), mapProp);
+
+  var marker=new google.maps.Marker({
+  position:center,
+  });
+
+  marker.setMap(map);
+}
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+</head>
+
+<body>
+<div id="googleMap" style="width:840px;height:480px;"></div>
+
+<ui-gmap-markers models=listing.coordinates coords='self' icon='icon'>
+        </ui-gmap-markers>
+
+</body>
+</html>
+
+
+
+
 <!--
   Create a new view that uses a map to display all the listings with the angular-google-maps library.
   Each listing should be displayed as a marker. Each marker, when clicked on, should display a window that
@@ -8,26 +48,3 @@
     https://angular-ui.github.io/angular-google-maps/#!/api/markers
     https://angular-ui.github.io/angular-google-maps/#!/api/windows
   -->
-
-  <!DOCTYPE html>
-  <html>
-  <head>
-  <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBAq4sL-N_5-CUEh_Co2yvYHBkUmgZNfyU"></script>
-  <script>
-  function initialize() {
-    var mapProp = {
-      center:new google.maps.LatLng(51.508742,-0.120850),
-      zoom:5,
-      mapTypeId:google.maps.MapTypeId.ROADMAP
-    };
-    var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
-  }
-  google.maps.event.addDomListener(window, 'load', initialize);
-  </script>
-  </head>
-
-  <body>
-  <div id="googleMap" style="width:500px;height:380px;"></div>
-  </body>
-
-  </html>
